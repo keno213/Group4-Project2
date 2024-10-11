@@ -16,4 +16,7 @@ if (process.env.DB_URL) {
     },
   );
 }
+<<<<<<< HEAD
     module.exports = sequelize;
+=======
+>>>>>>> 30710ba76913d2b5fb999a2d3ebc94e99883d519
