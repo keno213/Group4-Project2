@@ -5,9 +5,9 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sequelize = require('./config/connection');
 const routes = require('./controllers'); // Assuming you have an index.js in controllers that exports all routes
 const path = require('path');
-const dotenv = require('dotenv');
+//const dotenv = require('dotenv');
 
-dotenv.config();
+//dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 app.use(routes);
 
-// Start server
+ 
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => {
         console.log(`Server is running on http://localhost:${PORT}`);
