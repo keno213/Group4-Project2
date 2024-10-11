@@ -1,46 +1,3 @@
-<<<<<<< HEAD
-const { Model, DataTypes } = require(`sequelize`);
-const sequelize = require(`../config/connection`);
-
-class Book extends Model {}
-
-Book.init(
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      googleBookId: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      title: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      author: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      description: {
-        type: DataTypes.TEXT,
-      },
-      thumbnail: {
-        type: DataTypes.STRING,
-      },
-    },
-    {
-        sequelize,
-        freezeTableName: true,
-        underscored: true,
-        modelName: 'library',
-    }
-);
-
-module.exports = Book;
-=======
 const { Model } = require('sequelize');
 const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
@@ -65,8 +22,7 @@ User.init(
             allowNull: false,
             unique: true,
         },
-    }
-    email: {
+       email: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
@@ -74,7 +30,7 @@ User.init(
             isEmail: true,
         },
     },
-    password: {
+       password: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -97,4 +53,3 @@ User.init(
     modelName: 'user',
 }
 );
->>>>>>> 30710ba76913d2b5fb999a2d3ebc94e99883d519
