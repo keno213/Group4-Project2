@@ -34,3 +34,6 @@ router.post('/library/add', async (req, res) => {
     res.status(500).json({ message: 'Failed to add book to library' });
   }
 });
+
+// Export the router 
+module.exports = router;

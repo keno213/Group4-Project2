@@ -1,48 +1,41 @@
-const { Model, Datatypes } = require(`sequelize`);
-const sequelize = require(`../config/connection`);
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+const Library = require('./library');
+const User = require('./User');
+const Post = require('./postModel');
+const Review = require('./Review');
+const Book = require('./Book');
 
-class Index extends Model {}
+// Define associations
+User.hasMany(Library, { foreignKey: 'userId' });
+Library.belongsTo(User, { foreignKey: 'userId' });
 
-Index.init(
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      googleBookId: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      title: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      author: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      description: {
-        type: DataTypes.TEXT,
-      },
-      thumbnail: {
-        type: DataTypes.STRING,
-      },
-      userId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'user',
-          key: 'id',
-        },
-      },
-    },
-    {
-        sequelize,
-        freezeTablename: true,
-        underscored: true,
-        modelName: 'library',
+User.hasMany(Review, { foreignKey: 'userId' });
+Review.belongsTo(User, { foreignKey: 'userId' }); 
+
+Post.hasMany(Review, { foreignKey: 'postId' });
+Review.belongsTo(Post, { foreignKey: 'postId' }); 
+
+Library.belongsTo(Book, { foreignKey: 'googleBookId', targetKey: 'id' }); 
+
+// Sync models with database
+const syncModels = async () => {
+    try {
+        await sequelize.sync({ force: false });
+        console.log('Database synchronized successfully.');
+    } catch (error) {
+        console.error('Error synchronizing database:', error);
     }
-);
+};
 
-module.exports = Index;
+syncModels();
+
+// Export models
+module.exports = {
+    User,
+    Library,
+    Post,
+    Review,
+    Book,
+    syncModels,
+};

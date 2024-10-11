@@ -1,4 +1,4 @@
-const { Model, Datatypes } = require(`sequelize`);
+const { Model, DataTypes } = require(`sequelize`);
 const sequelize = require(`../config/connection`);
 
 class Library extends Model {}
@@ -39,7 +39,7 @@ Library.init(
     },
     {
         sequelize,
-        freezeTablename: true,
+        freezeTableName: true,
         underscored: true,
         modelName: 'library',
     }

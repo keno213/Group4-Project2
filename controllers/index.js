@@ -1,3 +1,4 @@
+const express = require('express');
 const router = require('express').Router();
 //const userRoutes = require('./userRoutes');
 //const reviewRoutes = require('./reviewRoutes');
@@ -9,7 +10,7 @@ const bookController = require('./bookController');
 router.use('/books', bookController);
 
 
-const reviewController = require('./reviewController');
+const reviewController = require('./reviewControllers');
 
 router.use('/reviews', reviewController);
 

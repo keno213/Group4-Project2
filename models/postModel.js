@@ -1,9 +1,9 @@
-const {Model, DataTypes} = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Review extends Model {}
+class Post extends Model {}
 
-Review.init(
+Post.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -11,8 +11,12 @@ Review.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        review_text: {
+        title: {
             type: DataTypes.STRING,
+            allowNull: false,
+        },
+        content: {
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         user_id: {
@@ -22,20 +26,13 @@ Review.init(
                 key: 'id',
             },
         },
-        post_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'post',
-                key: 'id',
-            },
-        },
     },
     {
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'review',
+        modelName: 'post',
     }
 );
 
-    module.exports = Review;
+module.exports = Post;
