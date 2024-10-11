@@ -1,48 +1,12 @@
-const { Model, Datatypes } = require(`sequelize`);
-const sequelize = require(`../config/connection`);
+const User = require("./User");
+const Book = require("./Book");
 
-class Index extends Model {}
+User.hasMany(Book, {
+  foreignKey: "bookId",
+});
 
-Index.init(
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      googleBookId: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      title: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      author: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      description: {
-        type: DataTypes.TEXT,
-      },
-      thumbnail: {
-        type: DataTypes.STRING,
-      },
-      userId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'user',
-          key: 'id',
-        },
-      },
-    },
-    {
-        sequelize,
-        freezeTablename: true,
-        underscored: true,
-        modelName: 'library',
-    }
-);
+Book.belongsTo(User, {
+  foreignKey: "userId",
+});
 
-module.exports = Index;
+module.exports = { User, Book };
