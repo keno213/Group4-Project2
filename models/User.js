@@ -35,6 +35,10 @@ User.init(
             allowNull: false,
     
         },
+        book_ids: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: true,
+        }
     },
    
  {

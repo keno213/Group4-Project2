@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const books = require(`../models`);
+const { Book } = require('../../models');
 
 
 //Fetch all books
