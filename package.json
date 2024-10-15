@@ -4,7 +4,8 @@
     "description": "A brief description of your project",
     "main": "server.js",
     "scripts": {
-        "start": "node server.js"
+        "start": "node server.js",
+        "seed": "node seeds/seed.js"
       
     },
     "repository": {

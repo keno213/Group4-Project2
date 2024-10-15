@@ -3,8 +3,8 @@ const { User } = require('../../models');
 
 router.get('/', async (req, res) => {
     console.log("GET /users/ route hit");
-    res.send("user");
-}
+    res.render("body");
+})
 
 
 
@@ -57,6 +57,25 @@ router.post('/login', async (req, res) => {
         res.status(400).json(err);
     }
 });
+
+router.post('/signup', async (req, res) => {
+    console.log("POST /signup route hit");
+    try {
+        //create a user
+        const userData = await User.create(req.body);
+    
+       
+        req.session.save(() => {
+            req.session.user_id = userData.id;
+            req.session.logged_in = true;
+            res.json({ user: userData, message: 'You are now logged in!' });
+        });
+        
+    } catch (err) {
+        res.status(400).json(err);
+    }
+});
+
 // User logout
 router.post('/logout', (req, res) => {
     if (req.session.logged_in) {

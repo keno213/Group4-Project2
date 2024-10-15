@@ -19,26 +19,31 @@ User.init(
         },
         username: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             unique: true,
         },
         email: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
+            allowNull: true,
+            unique: false,
             validate: {
                 isEmail: true,
             },
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
     
         },
         book_ids: {
             type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: true,
-        }
+        },
+        Falcore: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
+        },
+
     },
    
  {
