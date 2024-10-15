@@ -6,7 +6,9 @@ router.use("/reviews", reviewController);
 router.use("/users", userController);
 
 router.get("/", (req, res) => {
-  res.send("Welcome to the homepage");
+  console.log("Home route hit");
+  // res.send("Welcome to the homepage");
+  res.render("home");
 });
 
 module.exports = router;

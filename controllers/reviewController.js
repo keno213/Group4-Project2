@@ -22,3 +22,4 @@ router.post("/", async (req, res) => {
   res.json(newReview);
 });
 
+module.exports = router;

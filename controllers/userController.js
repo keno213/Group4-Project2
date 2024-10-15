@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
   console.log("POST /users/ route hit");
   const newUser = await User.create(req.body);
 });
-
+//update a user
 // put /users/:id
 router.put("/:id", async (req, res) => {
   console.log("PUT /users/:id route hit");
