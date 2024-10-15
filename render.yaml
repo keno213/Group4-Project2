@@ -1,0 +1,28 @@
+
+
+services:
+  
+  -type: web
+   name: BooksAndReview
+   env: node
+   buildCommand: npm install
+   startCommand: npm start
+   envVars:
+     -key: NODE_ENV
+      value: production
+     -key: DATABASE_URL
+      value: postgres://BooksDataBase:Books123@localhost:5432/books_review_db
+    plan: free
+    autoDeploy: true
+
+
+databases:
+
+  - name: BooksPostgres
+    postgressMajorVersion: "17"
+    region: ohio
+    plan: basic-256mb
+    databaseName: books_review_db
+    user: BooksDataBase
+
+  
