@@ -2,12 +2,12 @@
 
 services:
   
-  -type: web
-   name: BooksAndReview
-   env: node
-   buildCommand: npm install
-   startCommand: npm start
-   envVars:
+  - type: web
+    name: BooksAndReview
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
      -key: NODE_ENV
       value: production
      -key: DATABASE_URL
@@ -19,7 +19,7 @@ services:
 databases:
 
   - name: BooksPostgres
-    postgressMajorVersion: "17"
+    postgresMajorVersion: "17"
     region: ohio
     plan: basic-256mb
     databaseName: books_review_db
