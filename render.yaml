@@ -23,6 +23,6 @@ databases:
     region: ohio
     plan: basic-256mb
     databaseName: books_review_db
-    user: BooksDataBase
+    user: booksdatabase
 
   
