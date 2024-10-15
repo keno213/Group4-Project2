@@ -5,9 +5,15 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sequelize = require('./config/connection');
 const routes = require('./controllers'); // Assuming you have an index.js in controllers that exports all routes
 const path = require('path');
+<<<<<<< HEAD
 // const dotenv = require('dotenv');
 
 // dotenv.config();
+=======
+//const dotenv = require('dotenv');
+
+//dotenv.config();
+>>>>>>> 2505ebd756059f62a0c812914c267e2a9cf1d188
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,7 +31,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Session management
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    cookie: {},
+    cookie: {
+        maxAge: 300000,
+        httpOnly: true,
+        secure: false,
+        sameSite: 'strict',
+    },
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
@@ -36,8 +47,8 @@ app.use(session({
 // Routes
 app.use(routes);
 
-// Start server
-sequelize.sync({ force: false }).then(() => {
+ 
+sequelize.sync({ force: true }).then(() => {
     app.listen(PORT, () => {
         console.log(`Server is running on http://localhost:${PORT}`);
     });
