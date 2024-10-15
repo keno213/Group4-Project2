@@ -8,10 +8,10 @@ services:
     buildCommand: npm install
     startCommand: npm start
     envVars:
-     -key: NODE_ENV
-      value: production
-     -key: DATABASE_URL
-      value: postgres://BooksDataBase:Books123@localhost:5432/books_review_db
+     - key: NODE_ENV
+       value: production
+     - key: DATABASE_URL
+       value: postgres://BooksDataBase:Books123@localhost:5432/books_review_db
     plan: free
     autoDeploy: true
 
