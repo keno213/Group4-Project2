@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const bookController = require("./bookController");
+const reviewController = require("./reviewController");
 const userController = require("./userController");
 
-router.use("/books", bookController);
+router.use("/reviews", reviewController);
 router.use("/users", userController);
 
 router.get("/", (req, res) => {
