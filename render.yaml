@@ -11,7 +11,7 @@ services:
      - key: NODE_ENV
        value: production
      - key: DATABASE_URL
-       value: postgres://BooksDataBase:Books123@localhost:5432/books_review_db
+       value: postgresql://booksdatabase:11MSkcFJuJZmpferWHCcovAwy8csBbzd@dpg-cs6tm6btq21c73cj6lmg-a/books_review_db
     plan: free
     autoDeploy: true
 
@@ -19,7 +19,7 @@ services:
 databases:
 
   - name: BooksPostgres
-    postgresMajorVersion: "17"
+    postgresMajorVersion: "16"
     region: ohio
     plan: basic-256mb
     databaseName: books_review_db
