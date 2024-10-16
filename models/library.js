@@ -14,6 +14,11 @@ Library.init(
       googleBookId: {
         type: DataTypes.STRING,
         allowNull: false,
+	references: {
+		model: 'google_books',
+		key: 'google_book_id',
+
+	},
       },
       title: {
         type: DataTypes.STRING,
