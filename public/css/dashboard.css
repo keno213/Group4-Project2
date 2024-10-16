@@ -1,0 +1,22 @@
+.search-results {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    justify-content: center;   
+}
+
+.book-container {
+    width: 200px;
+    /* height: 300px; */
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+
+.book-image {
+    width: 150px;
+    height: 150px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

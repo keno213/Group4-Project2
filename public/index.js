@@ -1,8 +1,11 @@
-const username = queryselector('#username');
-const email = queryselector('#email');
-const password = queryselector('#password');
-const signup = queryselector('#signup-form');
-const login = queryselector('#login-form');
+const username = document.querySelector('#username');
+const email = document.querySelector('#email');
+const password = document.querySelector('#password');
+const signup = document.querySelector('#signup-form');
+const login = document.querySelector('#login-form');
+
+const emailLogin = document.querySelector("#email-login");
+const passwordLogin = document.querySelector("#password-login");
 
 
 
@@ -11,7 +14,11 @@ signup.addEventListener('submit', async (event) => {
 
     const response = await fetch('/api/users/signup', {
         method: 'POST',
-        body: JSON.stringify({ username: username, email: email.value, password: password.value }),
+        body: JSON.stringify({ 
+            username: username.value, 
+            email: email.value, 
+            password: password.value 
+        }),
         headers: { 'Content-Type': 'application/json' },
     });
     if (response.ok) {
@@ -19,20 +26,23 @@ signup.addEventListener('submit', async (event) => {
     } else {
         alert('Failed to sign up.');
     }
-    res.status(200).json(response);
+   
 });
 
-// login.addEventListener('submit', async (event) => {
-//     event.preventDefault();
+login.addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-//     const response = await fetch('/api/users/login', {
-//         method: 'POST',
-//         body: JSON.stringify({ email: email.value, password: password.value }),
-//         headers: { 'Content-Type': 'application/json' },
-//     });
-//     if (response.ok) {
-//         document.location.replace('/dashboard');
-//     } else {
-//         alert('Failed to log in.');
-//     }
-// });
+    const response = await fetch('/api/users/login', {
+        method: 'POST',
+        body: JSON.stringify({
+             email: emailLogin.value, 
+             password: passwordLogin.value 
+        }),
+        headers: { 'Content-Type': 'application/json' },
+    });
+    if (response.ok) {
+        document.location.replace('/dashboard');
+    } else {
+        alert('Failed to log in.');
+    }
+});
