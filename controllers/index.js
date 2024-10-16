@@ -1,22 +1,24 @@
+// controllers/index.js
+
 const express = require('express');
-const router = require('express').Router();
-//const userRoutes = require('./userRoutes');
-//const reviewRoutes = require('./reviewRoutes');
-router.get('/', (req, res) => { res.send('Hello World!') });
+const userRoutes = require('../routes/userRoutes');
+const router = express.Router();
+
+// Basic route for testing
+router.get('/', (req, res) => {
+    res.send('Hello World!');
+});
 
 
+// Import controllers
 const bookController = require('./bookController');
-
-router.use('/books', bookController);
-
-
-const reviewController = require('./reviewControllers');
-
-router.use('/reviews', reviewController);
-
-
+const reviewController = require('./reviewControllers'); 
 const userController = require('./userController');
 
+// Define routes
+router.use('/books', bookController);
+router.use('/reviews', reviewController);
 router.use('/users', userController);
 
+// Export the router
 module.exports = router;

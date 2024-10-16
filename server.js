@@ -6,10 +6,12 @@ const exphbs = require('express-handlebars');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sequelize = require('./config/connection');
-const routes = require('./controllers'); // Assuming you have an index.js in controllers that exports all routes
+const routes = require('./controllers'); 
 const path = require('path');
 const dotenv = require('dotenv');
 const { syncModels } = require('./models');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
 dotenv.config();
 
@@ -25,11 +27,12 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
 
 // Session management
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    cookie: {},
+    cookie: { secure: process.env.NODE_ENV === 'production' },
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
@@ -39,6 +42,15 @@ app.use(session({
 
 // Routes
 app.use(routes);
+
+
+
+app.get('/', (req,res) => {
+	res.render('home');
+});
+
+
+	
 
 syncModels();
 
