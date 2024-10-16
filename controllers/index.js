@@ -1,14 +1,10 @@
 const router = require("express").Router();
-const reviewController = require("./reviewController");
-const userController = require("./userController");
+const homeRoutes = require("./homeRoutes");
+const apiRoutes = require("./api/");
+const bookSearchRoutes = require("./bookSearchRoutes");
 
-router.use("/reviews", reviewController);
-router.use("/users", userController);
-
-router.get("/", (req, res) => {
-  console.log("Home route hit");
-  // res.send("Welcome to the homepage");
-  res.render("home");
-});
+router.use("/", homeRoutes);
+router.use("/api", apiRoutes);
+router.use("/bookSearch", bookSearchRoutes);
 
 module.exports = router;

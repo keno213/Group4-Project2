@@ -2,8 +2,23 @@
   <h1>Book Search Page</h1>
   <p>Search for a book here.</p>
   <form id="search-form">
-    <input type="text" id="search-input" />
-    <button type="submit" id="search">Search</button>
+    <input
+      type="text"
+      id="search-query"
+      placeholder="Enter book title, author, or topic"
+    />
+    {{! <button type="submit" id="search">Search</button> }}
+    <button onclick="searchBooks()">Search</button>
   </form>
 </div>
-<script src="/js/search.js"></script>
+
+<div id="book-list"></div>
+
+{{!-- <div><h2>Previous Reviews</h2></div>
+<div>
+  <h2>{{review.title}}</h2>
+  <p>Review by {{review.user.username}} on {{formatDate review.createdAt}}</p>
+  <p>{{review.body}}</p>
+</div> --}}
+
+<script src="js/search.js"></script>

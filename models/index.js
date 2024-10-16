@@ -1,13 +1,14 @@
 const User = require("./User");
 const Review = require("./Review");
-const Book = require("./Book");
-
-User.hasMany(Review, {
-  foreignKey: "book_id",
-});
 
 Review.belongsTo(User, {
   foreignKey: "user_id",
+  onDelete: "CASCADE",
 });
 
-module.exports = { User, Review, Book };
+User.hasMany(Review, {
+  foreignKey: "review_id",
+  onDelete: "CASCADE",
+});
+
+module.exports = { User, Review };

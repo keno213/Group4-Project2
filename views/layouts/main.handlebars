@@ -2,10 +2,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
     <title>Book Reviews - Project 2 by Group 4</title>
   </head>
   <body>
+
+    <nav>
+      <a href="/">Home</a> | <a href="/dashboard">Dashboard</a> |
+      {{#if loggedIn}}
+        <a href="#" id="logout">Logout</a>
+      {{/if}}
+    </nav>
+
     {{{body}}}
-    <script src="/js/logout.js"></script>
+    <script src="js/logout.js"></script>
   </body>
 </html>

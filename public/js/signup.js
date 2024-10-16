@@ -23,7 +23,7 @@ const signupFormHandler = async function (event) {
     });
 
     if (response.ok) {
-      document.location.replace('/books');
+      document.location.replace('/bookSearch');
     } else {
       alert('Failed to sign up');
     }
