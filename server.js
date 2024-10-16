@@ -5,15 +5,9 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sequelize = require('./config/connection');
 const routes = require('./controllers'); // Assuming you have an index.js in controllers that exports all routes
 const path = require('path');
-<<<<<<< HEAD
-// const dotenv = require('dotenv');
+const dotenv = require('dotenv');
 
-// dotenv.config();
-=======
-//const dotenv = require('dotenv');
-
-//dotenv.config();
->>>>>>> 2505ebd756059f62a0c812914c267e2a9cf1d188
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
