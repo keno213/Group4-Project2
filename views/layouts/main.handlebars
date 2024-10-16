@@ -9,6 +9,19 @@
 <body>
     <header>
         {{!-- <h1>{{header}}</h1> --}}
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+
+                {{#if loggedIn}}
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li id="logout-link"><a href="#">Logout</a></li>
+                {{else}}
+                <li><a href="/login">Login</a></li>
+                {{/if}}
+                {{!-- <li><a href="/newreview">Newreviewform</a></li> --}}
+            </ul>
+        </nav>
     </header>
     <main>
         {{{body}}}
@@ -16,6 +29,7 @@
     <footer>
         {{!-- <p>{{footer}}</p> --}}
     </footer>
-    <script src="/path/to/your/scripts.js"></script>
+    <script src="logout.js"></script>
+    {{!-- <script src="/path/to/your/scripts.js"></script> --}}
 </body>
 </html>
