@@ -1,0 +1,26 @@
+<h1>Newreviewform</h1>
+
+
+{{!-- CREATE A FORM FOR ADDING A NEW REVIEW --}}
+<h1>New Review Form</h1>
+
+{{!-- CREATE A FORM FOR ADDING A NEW REVIEW --}}
+<form id="new-review-form">
+  <div>
+    <label for="book-title">Book Title:</label>
+    <input type="text" id="book-title" name="book-title" required>
+  </div>
+  <div>
+    <label for="review-content">Review:</label>
+    <textarea id="review-content" name="review-content" required></textarea>
+  </div>
+  <div>
+    <label for="rating">Rating:</label>
+    <input type="number" id="rating" name="rating" min="1" max="5" required>
+  </div>
+  <button type="submit">Submit Review</button>
+</form>
+
+<div id="book-results"></div>
+
+<script src="/js/newreviewform.js"></script>c

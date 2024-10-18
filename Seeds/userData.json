@@ -1,0 +1,19 @@
+[
+  {
+    "username": "Sal",
+    "password": "password12345",
+    "email": "sal@email.com",
+    "book_ids": ["xJNFDwAAQBAJ"]
+  },
+  {
+    "username": "Mikey",
+    "password": "password12345",
+    "email": "Mikey@email.com"
+
+  },
+  {
+    "username": "Amiko",
+    "password": "password12345",
+    "email": "Amiko@email.com"
+  }
+]
