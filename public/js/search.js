@@ -95,7 +95,23 @@ document
         addFavorite.textContent = "Add to Favorites";
         addFavorite.addEventListener("click", async (event) => {
           // SEND A POST REQUEST TO ADD THE BOOK'S ID TO THE USER DATA
-          // fetch("/api/books/addBook", {)
+          // console.log("Adding to favorites");
+          // console.log(book.id);
+          try {
+            let res = await fetch("/api/favBooks/addBook", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                bookId: book.id,
+              }),
+            });
+            let data = await res.json();
+            console.log(data);
+          } catch (error) {
+            console.log(error);
+          }
         });
 
         const addReview = document.createElement("button");
@@ -128,11 +144,11 @@ document
     }
   });
 
-{
-  /* <form id="search-book-form">
+// {
+/* <form id="search-book-form">
   <input type="text" name="search" placeholder="Search for a book" id="search-term">
   <button type="submit">Search</button>
 </form>
 <div class="search-results" id="search-results"></div>
 <script src="search-google.js"></script> */
-}
+// }

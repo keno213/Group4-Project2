@@ -11,7 +11,7 @@ FavBook.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    googleId: {
+    google_id: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -27,11 +27,11 @@ FavBook.init(
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    imageUrl: {
+    thumbnail: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    BookUrl: {
+    book_url: {
       type: DataTypes.STRING,
       allowNull: true,
     },

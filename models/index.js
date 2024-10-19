@@ -5,41 +5,46 @@ const FavBook = require("./FavBook");
 
 //User Relations
 User.hasMany(Book, {
-  foreignKey: "user_id",
+  // foreignKey: "user_id",
   onDelete: "CASCADE",
 });
 
 Book.belongsTo(User, {
+  // foreign key created in Book Table
   foreignKey: "user_id",
   onDelete: "CASCADE",
 });
 
 //Review Relations
 User.hasMany(Review, {
-  foreignKey: "review_id",
+  //foreign key created in Review Table
+  // foreignKey: "review_id",
   onDelete: "CASCADE",
 });
 Review.belongsTo(User, {
+  // foreign key created in Review Table
   foreignKey: "user_id",
   onDelete: "CASCADE",
 });
 
 //Book Relations
 Book.hasMany(Review, {
-  foreignKey: "review_id",
+  // foreignKey: "review_id",
   onDelete: "CASCADE",
 });
 Review.belongsTo(Book, {
+  // foreign key created in Review Table
   foreignKey: "book_id",
   onDelete: "CASCADE",
 });
 
 //FavBook Relations
 User.hasMany(FavBook, {
-  foreignKey: "favBook_id",
+  // foreignKey: "favBook_id",
   onDelete: "CASCADE",
 });
 FavBook.belongsTo(User, {
+  // foreign key created in FavBook Table
   foreignKey: "user_id",
   onDelete: "CASCADE",
 });

@@ -11,7 +11,15 @@ Review.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    googleId: {
+    google_id: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    book_url: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    thumbnail: {
       type: DataTypes.STRING,
       allowNull: true,
     },

@@ -2,26 +2,27 @@
   <h1>Book Search Page</h1>
   <p>Search for a book here.</p>
   <form id="search-book-form">
-    <input
-      type="text"
-      id="search-query"
-      placeholder="Enter book title, author, or topic"
-    />
-    {{! <button type="submit" id="search">Search</button> }}
-    <button onclick="searchBooks()">Search</button>
+    <input type="text" id="search-query" placeholder="Enter book title, author, or topic" />
+    <button type="submit" id="search">Search</button>
+    {{!-- <button onclick="searchBooks()">Search</button> --}}
   </form>
 </div>
 
 <div id="search-results"></div>
 
-<div><h2>Previous Reviews</h2></div>
+<div>
+  <h2>Previous Reviews</h2>
+</div>
 
 {{#if reviews}}
   {{#each reviews}}
     <div>
       <h2>{{title}}</h2>
       <p>Review by {{user.username}} on {{formatDate createdAt}}</p>
-      <p>{{body}}</p>
+      <p>
+
+        {{body}}
+      </p>
     </div>
   {{/each}}
 {{else}}

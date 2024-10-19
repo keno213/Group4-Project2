@@ -1,42 +1,42 @@
 [
   {
-    "googleId": "1",
+    "googleId": "FSVTDwAAQBAJ",
     "title": "Fav Book 1",
-    "authors": "Authors",
-    "description": "Description",
-    "imageUrl": "ImageUrl",
-    "BookUrl": "BookUrl"
+    "authors": "Fav Author 1",
+    "description": "Fav Description 1",
+    "thumbnail": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "bookUrl": "https://www.googleapis.com/books/v1/volumes/FSVTDwAAQBAJ"
   },
   {
-    "googleId": "2",
+    "googleId": "FSVTDwAAQBAJ",
     "title": "Fav Book 2",
-    "authors": "Authors",
-    "description": "Description",
-    "imageUrl": "ImageUrl",
-    "BookUrl": "BookUrl"
+    "authors": "Fav Author 2",
+    "description": "Fav Description 2",
+    "thumbnail": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "bookUrl": "https://www.googleapis.com/books/v1/volumes/FSVTDwAAQBAJ"
   },
   {
-    "googleId": "3",
+    "googleId": "FSVTDwAAQBAJ",
     "title": "Fav Book 3",
-    "authors": "Authors",
-    "description": "Description",
-    "imageUrl": "ImageUrl",
-    "BookUrl": "BookUrl"
+    "authors": "Fav Author 3",
+    "description": "Fav Description 3",
+    "thumbnail": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "bookUrl": "https://www.googleapis.com/books/v1/volumes/FSVTDwAAQBAJ"
   },
   {
-    "googleId": "4",
+    "googleId": "FSVTDwAAQBAJ",
     "title": "Fav Book 4",
-    "authors": "Authors",
-    "description": "Description",
-    "imageUrl": "ImageUrl",
-    "BookUrl": "BookUrl"
+    "authors": "Fav Author 4",
+    "description": "Fav Description 4",
+    "thumbnail": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "bookUrl": "https://www.googleapis.com/books/v1/volumes/FSVTDwAAQBAJ"
   },
   {
-    "googleId": "5",
+    "googleId": "FSVTDwAAQBAJ",
     "title": "Fav Book 5",
-    "authors": "Authors",
-    "description": "Description",
-    "imageUrl": "ImageUrl",
-    "BookUrl": "BookUrl"
+    "authors": "Fav Author 5",
+    "description": "Fav Description 5",
+    "thumbnail": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "bookUrl": "https://www.googleapis.com/books/v1/volumes/FSVTDwAAQBAJ"
   }
 ]

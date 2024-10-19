@@ -1,42 +1,42 @@
 [
   {
-    "googleId": "1",
-    "title": "Title",
-    "authors": "Authors",
-    "description": "Description",
-    "imageUrl": "ImageUrl",
-    "BookUrl": "BookUrl"
+    "googleId": "FSVTDwAAQBAJ",
+    "title": "Title 1",
+    "authors": "Author 1",
+    "description": "Description 1",
+    "thumbnail": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "bookUrl": "https://www.googleapis.com/books/v1/volumes/FSVTDwAAQBAJ"
   },
   {
-    "googleId": "2",
-    "title": "Title",
-    "authors": "Authors",
-    "description": "Description",
-    "imageUrl": "ImageUrl",
-    "BookUrl": "BookUrl"
+    "googleId": "FSVTDwAAQBAJ",
+    "title": "Title 2",
+    "authors": "Author 2",
+    "description": "Description 2",
+    "thumbnail": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "bookUrl": "https://www.googleapis.com/books/v1/volumes/FSVTDwAAQBAJ"
   },
   {
-    "googleId": "3",
-    "title": "Title",
-    "authors": "Authors",
-    "description": "Description",
-    "imageUrl": "ImageUrl",
-    "BookUrl": "BookUrl"
+    "googleId": "FSVTDwAAQBAJ",
+    "title": "Title 3",
+    "authors": "Author 3",
+    "description": "Description 3",
+    "thumbnail": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "bookUrl": "https://www.googleapis.com/books/v1/volumes/FSVTDwAAQBAJ"
   },
   {
-    "googleId": "4",
-    "title": "Title",
-    "authors": "Authors",
-    "description": "Description",
-    "imageUrl": "ImageUrl",
-    "BookUrl": "BookUrl"
+    "googleId": "FSVTDwAAQBAJ",
+    "title": "Title 4",
+    "authors": "Author 4",
+    "description": "Description 4",
+    "thumbnail": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "bookUrl": "https://www.googleapis.com/books/v1/volumes/FSVTDwAAQBAJ"
   },
   {
-    "googleId": "5",
-    "title": "Title",
-    "authors": "Authors",
-    "description": "Description",
-    "imageUrl": "ImageUrl",
-    "BookUrl": "BookUrl"
+    "googleId": "FSVTDwAAQBAJ",
+    "title": "Title 5",
+    "authors": "Author 5",
+    "description": "Description 5",
+    "thumbnail": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "bookUrl": "https://www.googleapis.com/books/v1/volumes/FSVTDwAAQBAJ"
   }
 ]

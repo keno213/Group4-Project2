@@ -2,22 +2,6 @@ const router = require("express").Router();
 const { Review } = require("../models");
 const { withGuard } = require("../utils/authGuard");
 
-// post /bookSearch 
-// front end sends the data to this route and the results are sent back to the front end;
-router.post("/", withGuard, async (req, res) => {
-  try {
-    const books = await fetch(
-      "https://www.googleapis.com/books/v1/volumes?q=" +
-        req.body.searchterm +
-        "&maxResults=5"
-    );
-    const bookdata = await books.json();
-
-    res.json(bookdata.items);
-  } catch (error) {
-    res.json(error);
-  }
-});
 // get /bookSearch
 // this route gets all the reviews
 router.get("/", withGuard, async (req, res) => {
@@ -27,9 +11,7 @@ router.get("/", withGuard, async (req, res) => {
         user_id: req.session.user_id,
       },
     });
-
     const reviews = reviewData.map((review) => review.get({ plain: true }));
-
     res.render("book", {
       dashboard: true,
       loggedIn: req.session.logged_in,
@@ -65,6 +47,24 @@ router.get("/edit/:id", withGuard, async (req, res) => {
     }
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+// post /bookSearch
+// front end sends the data to this route and the results are sent back to the front end;
+//took out withGuard
+router.post("/", async (req, res) => {
+  try {
+    const books = await fetch(
+      "https://www.googleapis.com/books/v1/volumes?q=" +
+        req.body.searchterm +
+        "&maxResults=5"
+    );
+    const bookdata = await books.json();
+
+    res.json(bookdata.items);
+  } catch (error) {
+    res.json(error);
   }
 });
 

@@ -1,9 +1,19 @@
 <div>
-  <h1>Favorite Book</hh1>
-  <p>{{title}}</p>
-  <p>{{author}}</p>
-  <p>{{description}}</p>
-  <p>{{image}}</p>
-  <p>{{link}}</p>
-  {{!-- <p>{{review}}</p> --}}
+  <h1>Favorite Books</h1>
+  {{#if favBooks}}
+    {{#each favBooks}}
+      <p>{{id}}</p>
+      <p>{{google_id}}</p>
+      <p>{{title}}</p>
+      <p>{{authors}}</p>
+      <p>{{description}}</p>
+      <p>{{thumbnail}}</p>
+      <p>{{book_url}}</p>
+      {{!-- <p>{{review}}</p> --}}
+      <p>{{rating}}</p>
+      <p>{{#if review}} {{review}} {{else}} No review yet. {{/if}}</p>
+    {{/each}}
+  {{else}}
+    <p>No favorite books yet.</p>
+  {{/if}}
 </div>
