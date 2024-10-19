@@ -2,6 +2,24 @@ const router = require("express").Router();
 const { Review } = require("../models");
 const { withGuard } = require("../utils/authGuard");
 
+// post /bookSearch 
+// front end sends the data to this route and the results are sent back to the front end;
+router.post("/", withGuard, async (req, res) => {
+  try {
+    const books = await fetch(
+      "https://www.googleapis.com/books/v1/volumes?q=" +
+        req.body.searchterm +
+        "&maxResults=5"
+    );
+    const bookdata = await books.json();
+
+    res.json(bookdata.items);
+  } catch (error) {
+    res.json(error);
+  }
+});
+// get /bookSearch
+// this route gets all the reviews
 router.get("/", withGuard, async (req, res) => {
   try {
     const reviewData = await Review.findAll({
@@ -14,54 +32,39 @@ router.get("/", withGuard, async (req, res) => {
 
     res.render("book", {
       dashboard: true,
-      reviews,
       loggedIn: req.session.logged_in,
+      reviews,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get("/new", withGuard, (req, res) => {
+// get /bookSearch/newReview
+router.get("/newReview", withGuard, (req, res) => {
   res.render("newReview", {
     dashboard: true,
     loggedIn: req.session.logged_in,
   });
 });
-
+// get /bookSearch/editReview/:id
 router.get("/edit/:id", withGuard, async (req, res) => {
   try {
     const reviewData = await Review.findByPk(req.params.id);
 
     if (reviewData) {
-      const post = reviewData.get({ plain: true });
+      const review = reviewData.get({ plain: true });
 
       res.render("editReview", {
         dashboard: true,
-        review,
         loggedIn: req.session.logged_in,
+        review,
       });
     } else {
       res.status(404).end();
     }
   } catch (err) {
     res.status(500).json(err);
-  }
-});
-
-// this is not using withGuard or apiGuard
-router.post("/", async (req, res) => {
-  try {
-    const books = await fetch(
-      "https://www.googleapis.com/books/v1/volumes?q=" +
-        req.body.searchterm +
-        "&maxResults=10"
-    );
-    const bookdata = await books.json();
-
-    res.json(bookdata.items);
-  } catch (error) {
-    res.json(error);
   }
 });
 

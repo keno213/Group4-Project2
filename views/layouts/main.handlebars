@@ -8,12 +8,15 @@
   <body>
 
     <nav>
-      <a href="/">Home</a> | <a href="/dashboard">Dashboard</a> |
+      <a href="/">Home</a>
+      &nbsp;|&nbsp;
+      <a href="/bookSearch">Book Search</a>
       {{#if loggedIn}}
+        &nbsp;|&nbsp;
         <a href="#" id="logout">Logout</a>
       {{/if}}
     </nav>
-
+    <p>&nbsp;</p>
     {{{body}}}
     <script src="js/logout.js"></script>
   </body>
