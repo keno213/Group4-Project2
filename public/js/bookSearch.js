@@ -38,7 +38,7 @@ document
           const addReviewBtn = document.createElement("button");
           addReviewBtn.textContent = "Add a Review";
           addReviewBtn.addEventListener("click", function () {
-            document.location.replace("/bookSearch/newReview");
+            document.location.replace("/bookSearch/addReview");
           });
           bookDivEl.appendChild(addReviewBtn);
 
