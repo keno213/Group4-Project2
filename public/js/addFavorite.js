@@ -1,29 +1,10 @@
-const commentFormHandler = async function (event) {
-  event.preventDefault();
-
-  const postId = document.querySelector('input[name="post-id"]').value;
-  const body = document.querySelector('textarea[name="comment-body"]').value;
-
-  if (body) {
-    const response = await fetch('/api/comments', {
-      method: 'POST',
-      body: JSON.stringify({
-        postId,
-        body,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (response.ok) {
-      document.location.reload();
-    } else {
-      document.location.replace('/login');
-    }
+// JavaScript to log the toggle state
+document.getElementById("toggleSwitch").addEventListener("change", function () {
+  if (this.checked) {
+    console.log("Favorite is ON");
+    // Add code to update the database
+  } else {
+    console.log("Favorite is OFF");
+    // Add code to update the database
   }
-};
-
-document
-  .querySelector('#new-comment-form')
-  .addEventListener('submit', commentFormHandler);
+});
