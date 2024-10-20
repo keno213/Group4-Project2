@@ -12,7 +12,7 @@ router.get("/", withGuard, async (req, res) => {
       },
     });
     const reviews = reviewData.map((review) => review.get({ plain: true }));
-    res.render("book", {
+    res.render("bookSearch", {
       dashboard: true,
       loggedIn: req.session.logged_in,
       reviews,
@@ -51,20 +51,19 @@ router.get("/edit/:id", withGuard, async (req, res) => {
 });
 
 // post /bookSearch
-// front end sends the data to this route and the results are sent back to the front end;
 //took out withGuard
 router.post("/", async (req, res) => {
+  const searchTerm = req.query.q;
+  // const query = "harry potter";
   try {
-    const books = await fetch(
-      "https://www.googleapis.com/books/v1/volumes?q=" +
-        req.body.searchterm +
-        "&maxResults=5"
+    const response = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=AIzaSyDzKeFljnkLIMAcUVAggnv0AYqC2_DbYAM`
     );
-    const bookdata = await books.json();
-
-    res.json(bookdata.items);
+    const data = await response.json();
+    res.status(200).json(data);
   } catch (error) {
-    res.json(error);
+    console.log(error);
+    res.status(500).send("Error searching for books");
   }
 });
 
