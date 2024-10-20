@@ -1,7 +1,9 @@
 const router = require("express").Router();
 // const { Review, User } = require("../models");
 const { withoutGuard } = require("../utils/authGuard");
+// routes = /, /login, /signup
 
+// "/" home route
 router.get("/", async (req, res) => {
   try {
     res.render("home");
@@ -9,7 +11,7 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+// /login
 router.get("/login", withoutGuard, (req, res) => {
   try {
     res.render("login");
@@ -17,7 +19,7 @@ router.get("/login", withoutGuard, (req, res) => {
     res.status(500).json(err);
   }
 });
-
+// /signup
 router.get("/signup", withoutGuard, (req, res) => {
   try {
     res.render("signup");

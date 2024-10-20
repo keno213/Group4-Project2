@@ -49,6 +49,16 @@ document
           });
           bookDivEl.appendChild(addFavoriteBtn);
 
+          // favorite book toggle switch
+          const favoriteSwitch = document.createElement("label");
+          favoriteSwitch.className = "switch";
+          const favoriteInput = document.createElement("input");
+          favoriteInput.type = "checkbox";
+          favoriteSwitch.appendChild(favoriteInput);
+          const favoriteSpan = document.createElement("span");
+          favoriteSpan.className = "slider round";
+          favoriteSwitch.appendChild(favoriteSpan);
+          bookDivEl.appendChild(favoriteSwitch);
           bookList.appendChild(bookDivEl);
         });
       });

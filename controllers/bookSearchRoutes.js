@@ -1,9 +1,11 @@
 const router = require("express").Router();
 const { Review } = require("../models");
 const { withGuard } = require("../utils/authGuard");
+// routes get /bookSearch, /bookSearch/addReview, /bookSearch/editReview/:id
+// post / bookSearch
 
 // get /bookSearch
-// this route gets all the reviews
+// gets all the reviews for one logged in user by user_id
 router.get("/", withGuard, async (req, res) => {
   try {
     const reviewData = await Review.findAll({
@@ -22,13 +24,14 @@ router.get("/", withGuard, async (req, res) => {
   }
 });
 
-// get /bookSearch/newReview
-router.get("/newReview", withGuard, (req, res) => {
+// get /bookSearch/addReview
+router.get("/addReview", withGuard, (req, res) => {
   res.render("newReview", {
     dashboard: true,
     loggedIn: req.session.logged_in,
   });
 });
+
 // get /bookSearch/editReview/:id
 router.get("/edit/:id", withGuard, async (req, res) => {
   try {
@@ -51,15 +54,18 @@ router.get("/edit/:id", withGuard, async (req, res) => {
 });
 
 // post /bookSearch
+// 
 //took out withGuard
 router.post("/", async (req, res) => {
   const searchTerm = req.query.q;
+  console.log("searchTerm: ", req.query);
   // const query = "harry potter";
   try {
     const response = await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=AIzaSyDzKeFljnkLIMAcUVAggnv0AYqC2_DbYAM`
     );
     const data = await response.json();
+    // sends data var to the front end
     res.status(200).json(data);
   } catch (error) {
     console.log(error);
