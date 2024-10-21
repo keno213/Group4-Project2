@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Review } = require("../models");
 const { withGuard } = require("../utils/authGuard");
+require("dotenv").config();
 // routes = get /bookSearch
 // post / bookSearch, /bookSearch/addReview
 // delete /bookSearch/deleteReview
@@ -16,6 +17,26 @@ router.get("/", withGuard, async (req, res) => {
     });
     const reviews = reviewData.map((review) => review.get({ plain: true }));
     res.render("bookSearch", {
+      dashboard: true,
+      loggedIn: req.session.logged_in,
+      reviews,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// get /bookSearch/getReviews
+// gets all the reviews for one logged in user by user_id
+router.get("/getReviews", withGuard, async (req, res) => {
+  try {
+    const reviewData = await Review.findAll({
+      where: {
+        user_id: req.session.user_id,
+      },
+    });
+    const reviews = reviewData.map((review) => review.get({ plain: true }));
+    res.render("addReview", {
       dashboard: true,
       loggedIn: req.session.logged_in,
       reviews,
@@ -57,7 +78,7 @@ router.post("/", async (req, res) => {
   // const query = "harry potter";
   try {
     const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=AIzaSyDzKeFljnkLIMAcUVAggnv0AYqC2_DbYAM`
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${process.env.GOOGLE_BOOKS_API_KEY}`
     );
     const data = await response.json();
     // sends data var to the front end

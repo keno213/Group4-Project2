@@ -7,7 +7,8 @@ add a review button goes to another addReview.handlebars page
 add to Favorites button goes to another addFav.handlebars page
 
 1. need reviews 1.add a review 2.delete a review
-2. need favs 1.add to favs 2.remove from favs
+   1a. think about where the delete button needs to go
+2. need switch (on/off) favs 1.switch (on) add to favs 2.switch (off) remove from favs
 3. logout button works inconsistently depending on what handlebar page the user is on
 
 4. the back button does not cache the previous page I must research how to do this

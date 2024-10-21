@@ -1,3 +1,4 @@
+//need to save the data var to localStorage
 document
   .querySelector("#search-book-form")
   .addEventListener("submit", function (event) {
@@ -13,6 +14,10 @@ document
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        //save results to local storage so other handlebars can use the data
+        const savedSearchResults = JSON.stringify(data);
+        localStorage.setItem("searchResults", savedSearchResults);
+        //display the search results on the handlebar page
         const bookList = document.querySelector("#book-search-results");
         bookList.textContent = "";
         data.items.forEach((book) => {
@@ -42,18 +47,19 @@ document
           });
           bookDivEl.appendChild(addReviewBtn);
 
-          const addFavoriteBtn = document.createElement("button");
-          addFavoriteBtn.textContent = "Add to Favorites";
-          addFavoriteBtn.addEventListener("click", function () {
-            document.location.replace("/favorites");
-          });
-          bookDivEl.appendChild(addFavoriteBtn);
+          // const addFavoriteBtn = document.createElement("button");
+          // addFavoriteBtn.textContent = "Add to Favorites";
+          // addFavoriteBtn.addEventListener("click", function () {
+          //   document.location.replace("/favorites");
+          // });
+          // bookDivEl.appendChild(addFavoriteBtn);
 
           // favorite book toggle switch
           const favoriteSwitch = document.createElement("label");
           favoriteSwitch.className = "switch";
           const favoriteInput = document.createElement("input");
           favoriteInput.type = "checkbox";
+          favoriteInput.id = "toggleSwitch";
           favoriteSwitch.appendChild(favoriteInput);
           const favoriteSpan = document.createElement("span");
           favoriteSpan.className = "slider round";
@@ -63,3 +69,15 @@ document
         });
       });
   });
+
+// JavaScript to log the toggle state
+document.getElementById("toggleSwitch").addEventListener("change", function () {
+  if (this.checked) {
+    console.log("Favorite is ON");
+    // Add code to update the database
+    // fetch
+  } else {
+    console.log("Favorite is OFF");
+    // Add code to update the database
+  }
+});

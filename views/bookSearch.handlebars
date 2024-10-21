@@ -21,14 +21,33 @@
 
 {{#if reviews}}
   {{#each reviews}}
-    <div>
-      <h2>{{title}}</h2>
-      <p>Review by {{user.username}} on {{formatDate createdAt}}</p>
+    <div style="border: 1px solid black;" id="bookReview">
+      <img src="{{thumbnail}}" alt="{{title}}" />
+      <h2>Title: {{title}}</h2>
+      <p>Review by
+        {{#if username}}
+          {{user.username}}
+        {{else}}
+          Anonymous
+        {{/if}}
+        on {{formatDate createdAt}}
+      </p>
       <p>
+        {{!-- this is the body of a review --}}
 
         {{body}}
       </p>
+      <span id="container" style="display: flex; align-items: center;">
+        <button id="delete-review" data-id="{{_id}}">Delete this Review</button>&nbsp;&nbsp;&nbsp;
+        Add to Favorites: &nbsp;
+        <!-- Rounded switch uses css -->
+        <label class="switch">
+          <input type="checkbox" id="toggleSwitch">
+          <span class="slider round"></span>
+        </label>
+      </span>
     </div>
+    <p>&nbsp;</p>
   {{/each}}
 {{else}}
   <p>No reviews found.</p>
