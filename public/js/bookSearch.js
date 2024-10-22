@@ -1,4 +1,3 @@
-//need to save the data var to localStorage
 document
   .querySelector("#search-book-form")
   .addEventListener("submit", function (event) {
@@ -9,7 +8,7 @@ document
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ searchTerm }),
+      body: JSON.stringify(searchTerm ),
     })
       .then((response) => response.json())
       .then((data) => {

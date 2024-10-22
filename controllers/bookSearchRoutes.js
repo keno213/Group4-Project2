@@ -73,12 +73,14 @@ router.post("/addReview", withGuard, async (req, res) => {
 // post /bookSearch
 //took out withGuard
 router.post("/", async (req, res) => {
+  console.log("route bookSearch was hit");
+  // console.log("req.body: ", req.body);
   const searchTerm = req.query.q;
-  console.log("searchTerm: ", req.query);
+  // console.log("searchTerm: ", req.query);
   // const query = "harry potter";
   try {
     const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${process.env.GOOGLE_BOOKS_API_KEY}`
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=process.env.GOOGLE_BOOKS_API_KEY`
     );
     const data = await response.json();
     // sends data var to the front end
