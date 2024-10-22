@@ -35,9 +35,21 @@ User.init(
             allowNull: true,
     
         },
-        book_ids: {
-            type: DataTypes.ARRAY(DataTypes.STRING),
+        books: {
+            type: DataTypes.TEXT,
             allowNull: true,
+            get: function() {
+                if(this.getDataValue('books') === null) {
+                    return [];
+                }
+                return JSON.parse(this.getDataValue('books')) || [];
+            },
+            set: function(val) {
+                if (val === null) {
+                    return null;
+                }
+                return this.setDataValue('books', JSON.stringify(val));
+            }
         },
         Falcore: {
             type: DataTypes.BOOLEAN,

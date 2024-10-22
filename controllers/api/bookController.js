@@ -2,6 +2,28 @@ const router = require('express').Router();
 const { User, Book } = require('../../models');
 require('dotenv').config();
 
+router.get("/favorites", async (req, res) => {
+    try {
+        const user = await User.findOne({
+            where: {
+                id: req.session.user_id
+            }
+        })
+
+        // serialize the user object
+        const userData = user.get({ plain: true });
+
+        const books = userData.books;
+
+        res.json(books)
+    } catch (error) {
+        console.log(error)
+        res.json({
+            error
+        })
+    }
+})
+
 // //Fetch all books
 // //not http://Localhost:3001
 // // http://Localhost:3001/books
@@ -19,8 +41,21 @@ router.post('/searchgoogle', async (req, res) => {
 // ADD a post route for adding a book id to the user model
 router.post('/addbook', async (req, res) => {
     try {
+        const user = await User.findOne({
+            where: {
+                id: req.session.user_id
+            }
+        })
+
+        // serialize the user object
+        const userData = user.get({ plain: true });
+
+        console.log(userData)
+
+        const new_books = [...userData.books, req.body.book];
+
         await User.update(
-            { book_ids: [req.body.book_id] },
+            { books: new_books },
             {
                 where: {
                     id: req.session.user_id
@@ -33,7 +68,10 @@ router.post('/addbook', async (req, res) => {
         })
 
     } catch (error) {
-        res.json(error)
+        console.log(error)
+        res.json({
+            error
+        })
     }
 });
 
