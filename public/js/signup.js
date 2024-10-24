@@ -1,33 +1,24 @@
-const signupFormHandler = async function (event) {
-  event.preventDefault();
+const signupFormEl = document.querySelector("#signup-form");
+const signupUsernameEl = document.querySelector("#signup-username");
+const signupPasswordEl = document.querySelector("#signup-password");
 
-  const usernameEl = document.querySelector("#username-input-signup").value.trim();
-  const emailEl = document.querySelector("#email-input-signup").value.trim();
-  const passwordEl = document.querySelector("#password-input-signup").value.trim();
+signupFormEl.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const username = signupUsernameEl.value;
+  const password = signupPasswordEl.value;
 
-  if (passwordEl.length >= 8 && usernameEl) {
-    const response = await fetch("/api/users", {
+  try {
+    const response = await fetch("/signup", {
       method: "POST",
-      body: JSON.stringify({
-        username: usernameEl,
-        email: emailEl,
-        password: passwordEl,
-      }),
-      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
-
-    if (response.ok) {
-      document.location.replace("/bookSearch");
-    } else {
-      alert("Failed to sign up");
-    }
-  } else {
-    alert(
-      "Please include a username, email and password. Make sure your password is at least 8 characters long"
-    );
+    console.log("User created successfully!");
+    window.location.href = "/search";
+  } catch (error) {
+    console.log("Failed to create user");
+    console.error(error);
   }
-};
-
-document
-  .querySelector("#signup-form")
-  .addEventListener("submit", signupFormHandler);
+});

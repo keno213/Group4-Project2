@@ -1,0 +1,13 @@
+<nav>
+  <a href="/search">Back to Search</a>
+</nav>
+<h1>Book Reviews</h1>
+<ul>
+  {{#if reviews}}
+    {{#each reviews}}
+      <li>{{reviewText}}</li>
+    {{/each}}
+  {{else}}
+    <p>No saved reviews yet!</p>
+  {{/if}}
+</ul>

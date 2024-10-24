@@ -1,27 +1,22 @@
 [
   {
-    "username": "Walter",
-    "email": "w@w.com",
-    "password": "12345678"
+    "username": "walt",
+    "password": "1234"
   },
   {
-    "username": "Sal",
-    "email": "s@s.com",
-    "password": "12345678"
+    "username": "sall",
+    "password": "1234"
   },
   {
-    "username": "Bill",
-    "email": "b@b.com",
-    "password": "12345678"
+    "username": "bill",
+    "password": "1234"
   },
   {
-    "username": "Jen",
-    "email": "j@j.com",
-    "password": "12345678"
+    "username": "jeni",
+    "password": "1234"
   },
   {
-    "username": "April",
-    "email": "a@a.com",
-    "password": "12345678"
+    "username": "kate",
+    "password": "1234"
   }
 ]

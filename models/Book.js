@@ -11,7 +11,7 @@ Book.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    google_id: {
+    googleId: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -19,7 +19,7 @@ Book.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    authors: {
+    author: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -27,20 +27,20 @@ Book.init(
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    thumbnail: {
+    image: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    book_url: {
+    url: {
       type: DataTypes.STRING,
       allowNull: true,
     },
   },
   {
     sequelize,
-    timestamps: true,
     freezeTableName: true,
-    underscored: true,
+    timestamps: false,
+    underscored: false,
     modelName: "book",
   }
 );

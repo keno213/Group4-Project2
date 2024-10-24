@@ -1,0 +1,22 @@
+[
+  {
+    "userId": 1,
+    "favorite": true
+  },
+  {
+    "userId": 2,
+    "favorite": false
+  },
+  {
+    "userId": 3,
+    "favorite": true
+  },
+  {
+    "userId": 4,
+    "favorite": false
+  },
+  {
+    "userId": 5,
+    "favorite": true
+  }
+]

@@ -1,52 +1,51 @@
-const User = require("./User");
-const Review = require("./Review");
 const Book = require("./Book");
-const FavBook = require("./FavBook");
+const Favorite = require("./Favorite");
+const Review = require("./Review");
+const User = require("./User");
 
-//User Relations
-User.hasMany(Book, {
-  // foreignKey: "user_id",
-  onDelete: "CASCADE",
-});
-
-Book.belongsTo(User, {
-  // foreign key created in Book Table
-  foreignKey: "user_id",
-  onDelete: "CASCADE",
-});
-
-//Review Relations
-User.hasMany(Review, {
-  //foreign key created in Review Table
-  // foreignKey: "review_id",
-  onDelete: "CASCADE",
-});
-Review.belongsTo(User, {
-  // foreign key created in Review Table
-  foreignKey: "user_id",
-  onDelete: "CASCADE",
-});
-
-//Book Relations
+//Book 1:M Review
 Book.hasMany(Review, {
-  // foreignKey: "review_id",
-  onDelete: "CASCADE",
+  // PK Book.id connects to FK Review.bookId
 });
 Review.belongsTo(Book, {
-  // foreign key created in Review Table
-  foreignKey: "book_id",
-  onDelete: "CASCADE",
+  // FK created in Review Table
+  foreignKey: "bookId",
 });
 
-//FavBook Relations
-User.hasMany(FavBook, {
-  // foreignKey: "favBook_id",
-  onDelete: "CASCADE",
+//Book 1:M Favorite
+Book.hasMany(Favorite, {
+  // PK Book.id connects to FK Favorite.bookId
 });
-FavBook.belongsTo(User, {
-  // foreign key created in FavBook Table
-  foreignKey: "user_id",
-  onDelete: "CASCADE",
+Favorite.belongsTo(Book, {
+  // FK created in Favorite Table
+  foreignKey: "bookId",
 });
 
-module.exports = { User, Review, Book, FavBook };
+// User 1:M Favorite
+User.hasMany(Favorite, {
+  // PK User.id connects to FK Favorite.userId
+});
+Favorite.belongsTo(User, {
+  // FK created in Favorite Table
+  foreignKey: "userId",
+});
+
+// User 1:M Review
+User.hasMany(Review, {
+  // PK User.id connects to FK Review.userId
+});
+Review.belongsTo(User, {
+  // FK created in Review Table
+  foreignKey: "userId",
+});
+
+//User 1:M Book
+User.hasMany(Book, {
+  // PK User.id connects to FK Book.userId
+});
+Book.belongsTo(User, {
+  // FK created in Book Table
+  foreignKey: "userId",
+});
+
+module.exports = { Book, Favorite, Review, User };

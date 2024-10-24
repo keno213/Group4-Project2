@@ -1,0 +1,31 @@
+<nav>
+  <a href="/">Home</a>&nbsp;|&nbsp;
+  <a href="/search">Search</a>&nbsp;|&nbsp;
+  <a href="/favorites">Favorites</a>&nbsp;|&nbsp;
+  <a href="/reviews">Reviews</a>&nbsp;|&nbsp;
+  <a href="/logout">Logout</a>
+</nav>
+<h1>Search Books</h1>
+<form id="search-form">
+  <input type="text" id="search-input" placeholder="Search books..." />
+  <button type="submit">Search</button>
+</form>
+
+<ul>
+  {{#each books}}
+    <li>
+      <h2>{{volumeInfo.title}}</h2>
+      <form id="favorite-form">
+        <input type="hidden" id="fav-book-id" value="{{id}}">
+        <input type="hidden" id="fav-book-title" value="{{volumeInfo.title}}">
+        <button type="submit">Add to Favorites</button>
+      </form>
+      <form id="review-form">
+        <input type="hidden" id="rev-book-id" value="{{id}}">
+        <textarea id="review-textarea" placeholder="Add a review..."></textarea>
+        <button type="submit">Add Book Review</button>
+      </form>
+    </li>
+  {{/each}}
+</ul>
+<script src="js/search.js"></script>
