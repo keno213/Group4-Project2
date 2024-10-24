@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, Book } = require('../../models');
 require('dotenv').config();
 
-router.get("/favorites", async (req, res) => {
+router.get("/favorites", async (req, res) => { // This is where the favorites is 
     try {
         const user = await User.findOne({
             where: {
@@ -39,7 +39,7 @@ router.post('/searchgoogle', async (req, res) => {
 });
 
 // ADD a post route for adding a book id to the user model
-router.post('/addbook', async (req, res) => {
+router.post('/addbook', async (req, res) => { // This is where we add it to the favorites
     try {
         const user = await User.findOne({
             where: {
