@@ -18,6 +18,11 @@ router.get('/dashboard', (req, res) => {
         loggedIn: req.session.logged_in
     });
 });
+router.get('/favorites', (req, res) => {
+    res.render('favorites', {
+        loggedIn: req.session.logged_in
+    });
+});
 router.get('/newreview', (req, res) => {
     res.render('Newreviewform', {
         loggedIn: req.session.logged_in

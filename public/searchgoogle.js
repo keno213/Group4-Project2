@@ -38,7 +38,19 @@ document.getElementById('search-book-form').addEventListener('submit', async (ev
             addFavorite.textContent = "Add to Favorites";
             addFavorite.addEventListener('click', async (event) => {
                 // SEND A POST REQUEST TO ADD THE BOOK'S ID TO THE USER DATA
-                // fetch("/api/books/addbook", {)
+                fetch("/api/books/addbook", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        book: book
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                })
             })
 
             const addReview = document.createElement('button');
