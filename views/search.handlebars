@@ -12,20 +12,29 @@
 </form>
 
 <ul>
-  {{#each books}}
-    <li>
-      <h2>{{volumeInfo.title}}</h2>
-      <form id="favorite-form">
-        <input type="hidden" id="fav-book-id" value="{{id}}">
-        <input type="hidden" id="fav-book-title" value="{{volumeInfo.title}}">
-        <button type="submit">Add to Favorites</button>
-      </form>
-      <form id="review-form">
-        <input type="hidden" id="rev-book-id" value="{{id}}">
-        <textarea id="review-textarea" placeholder="Add a review..."></textarea>
-        <button type="submit">Add Book Review</button>
-      </form>
-    </li>
-  {{/each}}
+  {{#if books}}
+    {{#each books}}
+      <li>
+        <p>{{this.id}}</p>
+        <p>{{this.volumeInfo.title}}</p>
+        <p>{{#each this.volumeInfo.authors}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</p>
+        <p>{{this.volumeInfo.description}}</p>
+        <img src="{{this.volumeInfo.imageLinks.thumbnail}}" alt="{{this.volumeInfo.title}}" />
+        <p><a href="{{this.volumeInfo.infoLink}}">Google Books Link</a></p>
+        <form id="favorite-form">
+          <input type="hidden" id="fav-book-id" value="{{id}}">
+          <input type="hidden" id="fav-book-title" value="{{title}}">
+          <button type="submit">Add to Favorites</button>
+        </form>
+        <form id="review-form">
+          <input type="hidden" id="rev-book-id" value="{{id}}">
+          <textarea id="review-textarea" placeholder="Add a review..."></textarea>
+          <button type="submit">Add Book Review</button>
+        </form>
+      </li>
+    {{/each}}
+  {{else}}
+    <li>No books found</li>
+  {{/if}}
 </ul>
 <script src="js/search.js"></script>

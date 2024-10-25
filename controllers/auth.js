@@ -51,35 +51,66 @@ router.get("/", (req, res) => {
   res.render("index");
 });
 // get /search - just gets the last 5 searched books from the database
+// this gets what is already saved to the database
+// the database model is a different structure compared to the api.
 router.get("/search", async (req, res) => {
   try {
-    const booksData = await Book.findAll({});
-    const books = booksData.map((book) => book.get({ plain: true }));
-    res.render("search", { books });
-    // res.render("search");
-  } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json(error)
-      .send("An error occurred while finding books in the database.");
-  }
-});
+    console.log("GET /search route was hit");
 
-// todo: working on /search need to hook it up to the api
+    // Get the search query from the query parameters or use a default
+    const searchQuery = req.query.q || "javascript";
 
-router.post("/search", async (req, res) => {
-  //eventually will have the query from the user and the online GB API
-  const query = req.body.query;
-  try {
-    const response = await fetch("http://127.0.0.1:5500/api/google.json");
-    const books = await response.json();
+    // Fetch data from Google Books API
+    const response = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
+        searchQuery
+      )}&maxResults=5}`
+    ); // Fetch the first 5 books
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const books = response.json();
     res.render("search", { books });
   } catch (error) {
     console.error(error);
-    res.status(500).send("An error occurred while searching for books.");
+    res;
+    console.error(error);
+    res.render("search", { books: [] }); // Render with empty books array on error
   }
 });
+// post /search
+// router.post("/search", async (req, res) => {
+//   console.log("/SEARCH route was hit: ");
+//   // get the search query from the front end and search the google books api for books and return them to the front end
+//   const query = req.body.searchQuery;
+//   // console.log("SEARCH QUERY: ", query);
+//   try {
+//     const booksData = await fetch(
+//       `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=5`
+//     );
+//     const books = await booksData.json();
+//     // save the books to the database
+//     console.log("API BOOKS: ", books);
+//     books.items.forEach(async (book) => {
+//       await Book.create({
+//         googleId: book.id,
+//         title: book.volumeInfo.title,
+//         author: book.volumeInfo.authors[0],
+//         description: book.volumeInfo.description,
+//         image: book.volumeInfo.imageLinks.thumbnail,
+//         url: book.volumeInfo.previewLink,
+//         userId: req.session.userId,
+//       });
+//     });
+//     console.log("BOOKS saved to the database");
+
+//     console.log("RETCHED BOOKS RESULTS: ", books);
+//     res.render("search", { books });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("An error occurred while searching for books.");
+//   }
+// });
 // get /favorites
 router.get("/favorites", async (req, res) => {
   try {

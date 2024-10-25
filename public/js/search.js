@@ -6,13 +6,13 @@ const favBookTitleEl = document.querySelector("#fav-book-title");
 const reviewFormEl = document.querySelector("#review-form");
 const reviewBookIdEl = document.querySelector("#review-book-id");
 const reviewTextareaEl = document.querySelector("#review-textarea");
-
+// this works
 if (searchFormEl) {
   searchFormEl.addEventListener("submit", async (event) => {
     event.preventDefault();
     try {
       const searchQuery = searchInputEl.value;
-      const searchResults = await fetch("/search", {});
+      const searchPost = await fetch("/search");
     } catch (error) {
       console.error(error);
     }
