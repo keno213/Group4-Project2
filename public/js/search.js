@@ -2,7 +2,6 @@ const searchFormEl = document.querySelector("#search-form");
 const searchInputEl = document.querySelector("#search-input");
 const favoriteFormEl = document.querySelector("#favorite-form");
 const favBookIdEl = document.querySelector("#fav-book-id");
-const favBookTitleEl = document.querySelector("#fav-book-title");
 const reviewFormEl = document.querySelector("#review-form");
 const reviewBookIdEl = document.querySelector("#review-book-id");
 const reviewTextareaEl = document.querySelector("#review-textarea");
@@ -12,7 +11,13 @@ if (searchFormEl) {
     event.preventDefault();
     try {
       const searchQuery = searchInputEl.value;
-      const searchPost = await fetch("/search");
+      const searchPost = await fetch("/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ searchQuery }),
+      });
     } catch (error) {
       console.error(error);
     }
@@ -23,14 +28,14 @@ if (favoriteFormEl) {
   favoriteFormEl.addEventListener("submit", async (event) => {
     event.preventDefault();
     try {
+      //this is the google Book id value
       const bookId = favBookIdEl.value;
-      const bookTitle = favBookTitleEl.value;
-      const favoriteResults = await fetch("/books/favorite", {
+      const favoriteResults = await fetch("/favorite", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ bookId, bookTitle }),
+        body: JSON.stringify({ bookId }),
       });
       if (favoriteResults.ok) {
         console.log("Favorite added successfully!");

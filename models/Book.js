@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
-
+//This requires PostgreSQL as the database. If you are using a different database, you may need to adjust the data types for the author column. Consider storing authors as a JSON string or creating a separate Author model with associations.
 class Book extends Model {}
 
 Book.init(
@@ -11,6 +11,7 @@ Book.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    // The id from Google Books API
     googleId: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -19,19 +20,19 @@ Book.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    author: {
-      type: DataTypes.STRING,
+    authors: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true,
     },
     description: {
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    image: {
+    thumbnail: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    url: {
+    infoLink: {
       type: DataTypes.STRING,
       allowNull: true,
     },

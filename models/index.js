@@ -9,7 +9,7 @@ Book.hasMany(Review, {
 });
 Review.belongsTo(Book, {
   // FK created in Review Table
-  foreignKey: "bookId",
+  foreignKey: "fkBookId",
 });
 
 //Book 1:M Favorite
@@ -18,7 +18,7 @@ Book.hasMany(Favorite, {
 });
 Favorite.belongsTo(Book, {
   // FK created in Favorite Table
-  foreignKey: "bookId",
+  foreignKey: "fkBookId",
 });
 
 // User 1:M Favorite
@@ -27,7 +27,7 @@ User.hasMany(Favorite, {
 });
 Favorite.belongsTo(User, {
   // FK created in Favorite Table
-  foreignKey: "userId",
+  foreignKey: "fkUserId",
 });
 
 // User 1:M Review
@@ -36,7 +36,7 @@ User.hasMany(Review, {
 });
 Review.belongsTo(User, {
   // FK created in Review Table
-  foreignKey: "userId",
+  foreignKey: "fKUserId",
 });
 
 //User 1:M Book
@@ -45,7 +45,7 @@ User.hasMany(Book, {
 });
 Book.belongsTo(User, {
   // FK created in Book Table
-  foreignKey: "userId",
+  foreignKey: "fkUserId",
 });
 
 module.exports = { Book, Favorite, Review, User };

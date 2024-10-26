@@ -5,36 +5,52 @@
   <a href="/reviews">Reviews</a>&nbsp;|&nbsp;
   <a href="/logout">Logout</a>
 </nav>
-<h1>Search Books</h1>
+<h1>Books Search</h1>
 <form id="search-form">
-  <input type="text" id="search-input" placeholder="Search books..." />
+  <label for="search-input">Enter a book title, keyword, or subject: </label>
+  <input type="text" id="search-input" name="search-input" required value="{{search-input}}"
+    placeholder="Search books..." />
   <button type="submit">Search</button>
 </form>
 
-<ul>
+<div>
+  {{#if error}}
+    <p style="color: red;">{{error}}</p>
+  {{/if}}
+</div>
+<div>
   {{#if books}}
-    {{#each books}}
-      <li>
-        <p>{{this.id}}</p>
-        <p>{{this.volumeInfo.title}}</p>
-        <p>{{#each this.volumeInfo.authors}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</p>
-        <p>{{this.volumeInfo.description}}</p>
-        <img src="{{this.volumeInfo.imageLinks.thumbnail}}" alt="{{this.volumeInfo.title}}" />
-        <p><a href="{{this.volumeInfo.infoLink}}">Google Books Link</a></p>
-        <form id="favorite-form">
-          <input type="hidden" id="fav-book-id" value="{{id}}">
-          <input type="hidden" id="fav-book-title" value="{{title}}">
-          <button type="submit">Add to Favorites</button>
-        </form>
-        <form id="review-form">
-          <input type="hidden" id="rev-book-id" value="{{id}}">
-          <textarea id="review-textarea" placeholder="Add a review..."></textarea>
-          <button type="submit">Add Book Review</button>
-        </form>
-      </li>
-    {{/each}}
+    <h2>Results for "{{query}}":</h2>
+    <ul>
+      {{#each books}}
+        <li>
+          <h3>{{title}}</h3>
+          <p>Author(s):
+            {{#if authors}}
+              {{#each authors}}
+                {{authors}}
+              {{else}}Unknown
+            {{/if}}
+          </p>
+          <p>{{description}}</p>
+          <p><img src="{{thumbnail}}" alt="{{title}} Book cover" /></p>
+          <p><a href="{{infoLink}}">Google Books Link</a></p>
+          <form id="favorite-form">
+            <input type="hidden" id="fav-book-id" value="{{id}}">
+            <button type="submit">Add to Favorites</button>
+          </form>
+          <form id="review-form">
+            <input type="hidden" id="rev-book-id" value="{{id}}">
+            <textarea id="review-textarea" placeholder="Add a review..."></textarea>
+            <button type="submit">Add Book Review</button>
+          </form>
+        </li>
+      {{/each}}
   {{else}}
     <li>No books found</li>
+    </ul>
   {{/if}}
-</ul>
+</div>
 <script src="js/search.js"></script>
+<script src="js/favorite.js"></script>
+<script src="js/review.js"></script>

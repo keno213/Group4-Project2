@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Book, Favorite, Review, User } = require("../models");
 const bcrypt = require("bcrypt");
+require("dotenv").config();
 // get /signup
 router.get("/signup", (req, res) => {
   res.render("signup");
@@ -52,80 +53,93 @@ router.get("/", (req, res) => {
 });
 // get /search - just gets the last 5 searched books from the database
 // this gets what is already saved to the database
-// the database model is a different structure compared to the api.
 router.get("/search", async (req, res) => {
   try {
     console.log("GET /search route was hit");
-
-    // Get the search query from the query parameters or use a default
-    const searchQuery = req.query.q || "javascript";
-
-    // Fetch data from Google Books API
-    const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
-        searchQuery
-      )}&maxResults=5}`
-    ); // Fetch the first 5 books
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const books = response.json();
+    // get 5 books saved in the database
+    const books = await Book.findAll({
+      limit: 5,
+      order: [["createdAt", "DESC"]],
+    });
     res.render("search", { books });
   } catch (error) {
-    console.error(error);
-    res;
     console.error(error);
     res.render("search", { books: [] }); // Render with empty books array on error
   }
 });
 // post /search
-// router.post("/search", async (req, res) => {
-//   console.log("/SEARCH route was hit: ");
-//   // get the search query from the front end and search the google books api for books and return them to the front end
-//   const query = req.body.searchQuery;
-//   // console.log("SEARCH QUERY: ", query);
-//   try {
-//     const booksData = await fetch(
-//       `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=5`
-//     );
-//     const books = await booksData.json();
-//     // save the books to the database
-//     console.log("API BOOKS: ", books);
-//     books.items.forEach(async (book) => {
-//       await Book.create({
-//         googleId: book.id,
-//         title: book.volumeInfo.title,
-//         author: book.volumeInfo.authors[0],
-//         description: book.volumeInfo.description,
-//         image: book.volumeInfo.imageLinks.thumbnail,
-//         url: book.volumeInfo.previewLink,
-//         userId: req.session.userId,
-//       });
-//     });
-//     console.log("BOOKS saved to the database");
+// Search route to handle book search
+router.post("/search", async (req, res) => {
+  const query = req.body.searchQuery;
+  const apiUrl = `${process.env.GOOGLE_BOOKS_API_URL}?q=${encodeURIComponent(
+    query
+  )}&maxResults=5`;
 
-//     console.log("RETCHED BOOKS RESULTS: ", books);
-//     res.render("search", { books });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("An error occurred while searching for books.");
-//   }
-// });
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    console.log("google books data in JSON format: ", data);
+
+    if (data.items) {
+      const books = data.items.map((item) => ({
+        //this is the google books id
+        //this has to be called id because that is what the handlebar expects
+        id: item.id,
+        title: item.volumeInfo.title,
+        authors: item.volumeInfo.authors,
+        description: item.volumeInfo.description,
+        thumbnail: item.volumeInfo.imageLinks?.thumbnail,
+        infoLink: item.volumeInfo.info,
+      }));
+      // save api books to database include the userId
+      books.forEach(async (book) => {
+        await Book.create({
+          googleId: book.id,
+          title: book.title,
+          authors: book.authors,
+          description: book.description,
+          thumbnail: book.thumbnail,
+          infoLink: book.infoLink,
+          userId: req.session.userId,
+        });
+      });
+      res.render("home", { books, query });
+    } else {
+      res.render("home", { books: [], query, error: "No results found" });
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error.message);
+    res.render("home", { books: [], query, error: "Error fetching data" });
+  }
+});
 // get /favorites
 router.get("/favorites", async (req, res) => {
   try {
     // const favoritesData = await sequelize.query(
     //   "SELECT book.*, favorite.* FROM book, favorite WHERE book.'userId' = book.'favoriteId' AND favorite.'bookId' = book.'id' AND favorite = TRUE"
     // );
+    // first I must find the Book.id
+    // the req.body.bookId is the google book id
     const favoritesData = await Book.findAll({
-      where: { userId: req.session.userId },
+      // left model name. right user's google book id
+      where: { googleId: req.body.bookId },
     });
-    const favorites = favoritesData.map((favorite) =>
+    //serialize the sequelize returned data from the db
+    const bookMatches = favoritesData.map((favorite) =>
       favorite.get({ plain: true })
     );
-    console.log("QUERY: ", favorites);
+    const saveToFav = await Favorite.create({
+      favorite: true,
+      fkUserId: req.session.userId,
+      // Book.id that matches the search for the gid
+      fkBookId: bookMatches.id,
+    });
+    const favorites = await Favorite.findAll({
+      where: { userId: req.session.userId },
+    });
+
     res.render("favorites", { favorites });
-    //this worked before
     // res.render("favorites");
   } catch (error) {
     console.error(error);

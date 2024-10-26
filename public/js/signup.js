@@ -18,7 +18,7 @@ signupFormEl.addEventListener("submit", async (e) => {
     console.log("User created successfully!");
     window.location.href = "/search";
   } catch (error) {
-    console.log("Failed to create user");
     console.error(error);
+    console.log("Failed to create user");
   }
 });
