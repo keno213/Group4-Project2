@@ -1,12 +1,13 @@
 const router = require("express").Router();
 const { Book } = require("../../models");
 const { withGuard, apiGuard } = require("../../utils/auth");
+require("dotenv").config();
 
 // this route uses the express.urlencoded({ extended: true })); setting from the server.js file to get the query
 router.get("/search/:query", withGuard, async (req, res) => {
   try {
     const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${req.params.query}&key=${process.env.GOOGLE_BOOKS_API_KEY}&maxResults=5`
+      `${process.env.GOOGLE_BOOKS_API_URL}?q=${req.params.query}&key=${process.env.GOOGLE_BOOKS_API_KEY}&maxResults=5`
     );
     const data = await response.json();
     // I need to test the .status to see if the route still works.
