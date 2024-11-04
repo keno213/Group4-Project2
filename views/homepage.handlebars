@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Welcome to Book Tracker</h1>
+  {{#if logged_in}}
+    <div class="search-container">
+      <h2>Search Books</h2>
+      <form id="search-form">
+        <input type="text" id="search-input" placeholder="Search for books...">
+        <button type="submit">Search</button>
+      </form>
+      <div id="search-results"></div>
+    </div>
+    <script src="/js/search.js"></script>
+  {{else}}
+    <p>Please login or sign up to start tracking your books!</p>
+  {{/if}}
+</div>

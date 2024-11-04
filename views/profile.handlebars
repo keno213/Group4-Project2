@@ -1,0 +1,40 @@
+{{!-- this handlebar is only responsible for displaying the User's favorites and reviews --}}
+<div class="container">
+  <h2>Welcome, {{username}}!</h2>
+
+  <section class="favorites">
+    <h3>Your Favorite Books</h3>
+    {{#if books.length}}
+      <div class="book-list">
+        {{#each books}}
+          <div class="book-card">
+            <img src="{{image_link}}" alt="{{title}} cover">
+            <h4>{{title}}</h4>
+            <p>By: {{authors}}</p>
+            <button class="review-btn" data-id="{{id}}">Write Review</button>
+          </div>
+        {{/each}}
+      </div>
+    {{else}}
+      <p>No favorite books yet!</p>
+    {{/if}}
+  </section>
+
+  <section class="reviews">
+    <h3>Your Reviews</h3>
+    {{#if reviews.length}}
+      <div class="review-list">
+        {{#each reviews}}
+          <div class="review-card">
+            <h4>{{book.title}}</h4>
+            <p>Rating: {{rating}}/5</p>
+            <p>{{content}}</p>
+          </div>
+        {{/each}}
+      </div>
+    {{else}}
+      <p>No reviews yet!</p>
+    {{/if}}
+  </section>
+  <script src="/js/profile.js"></script>
+</div>

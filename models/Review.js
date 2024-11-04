@@ -11,20 +11,38 @@ Review.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    content: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
     rating: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
+      validate: {
+        min: 1,
+        max: 5,
+      },
     },
-    reviewText: {
-      type: DataTypes.TEXT,
-      allowNull: true,
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "user",
+        key: "id",
+      },
+    },
+    book_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "book",
+        key: "id",
+      },
     },
   },
   {
     sequelize,
+    timestamps: true,
     freezeTableName: true,
-    timestamps: false,
-    underscored: false,
+    underscored: true,
     modelName: "review",
   }
 );

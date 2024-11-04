@@ -1,47 +1,37 @@
 [
   {
-    "googleId": "FSVTDwAAQBAJ",
+    "google_books_id": "FSVTDwAAQBAA",
     "title": "Title 1",
-    "authors": "A{Author 1, Author 11}",
+    "authors": "Author 1",
     "description": "Description 1",
-    "image": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-    "url": "https://www.googleapis.com/books/v1/volumes/FSVTDwAAQBAJ",
-    "userId": 1
+    "image_link": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
   },
   {
-    "googleId": "FSVTDwAAQBAJ",
+    "google_books_id": "FSVTDwAAQBAB",
     "title": "Title 2",
-    "authors": "{Author 2, Author 22}",
+    "authors": "Author 2",
     "description": "Description 2",
-    "image": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-    "url": "https://www.googleapis.com/books/v1/volumes/FSVTDwAAQBAJ",
-    "userId": 2
+    "image_link": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
   },
   {
-    "googleId": "FSVTDwAAQBAJ",
+    "google_books_id": "FSVTDwAAQBAC",
     "title": "Title 3",
     "authors": "Author 3",
     "description": "{Author 3, Author 33}",
-    "image": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-    "url": "https://www.googleapis.com/books/v1/volumes/FSVTDwAAQBAJ",
-    "userId": 3
+    "image_link": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
   },
   {
-    "googleId": "FSVTDwAAQBAJ",
+    "google_books_id": "FSVTDwAAQBAD",
     "title": "Title 4",
-    "authors": "{Author 4, Author 44}",
+    "authors": "Author 4",
     "description": "Description 4",
-    "image": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-    "url": "https://www.googleapis.com/books/v1/volumes/FSVTDwAAQBAJ",
-    "userId": 4
+    "image_link": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
   },
   {
-    "googleId": "FSVTDwAAQBAJ",
+    "google_books_id": "FSVTDwAAQBAE",
     "title": "Title 5",
-    "authors": "{Author 5, Author 55}",
+    "authors": "Author 5",
     "description": "Description 5",
-    "image": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-    "url": "https://www.googleapis.com/books/v1/volumes/FSVTDwAAQBAJ",
-    "userId": 5
+    "image_link": "http://books.google.com/books/content?id=FSVTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
   }
 ]

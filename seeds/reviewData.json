@@ -1,32 +1,32 @@
 [
   {
-    "bookId": 1,
-    "userId": 5,
-    "rating": 4,
-    "reviewText": "Number 1 What an adventure this book took me on. I couldn't put it down! The characters were so well developed and the plot was so engaging. I can't wait to read more from this author!"
-  },
-  {
-    "bookId": 2,
-    "userId": 4,
-    "rating": 2,
-    "reviewText": "Number 2 I was bored to tears reading this book. The characters were so one-dimensional and the plot was so predictable. I can't believe I wasted my time on this book."
-  },
-  {
-    "bookId": 3,
-    "userId": 3,
     "rating": 5,
-    "reviewText": "Number 3 The life advice this author wrote about was so inspiring. I feel like a new person after reading this book. I will read it again and again!"
+    "content": "Number 5 What an adventure this book took me on. I couldn't put it down! The characters were so well developed and the plot was so engaging. I can't wait to read more from this author!",
+    "book_id": 5,
+    "user_id": 5
   },
   {
-    "bookId": 4,
-    "userId": 2,
-    "rating": 1,
-    "reviewText": "Number 4 The life advice this author wrote about was so inspiring. I feel like a new person after reading this book. I will read it again and again!"
+    "rating": 4,
+    "content": "Number 4 I was bored to tears reading this book. The characters were so one-dimensional and the plot was so predictable. I can't believe I wasted my time on this book.",
+    "book_id": 4,
+    "user_id": 4
   },
   {
-    "bookId": 5,
-    "userId": 1,
     "rating": 3,
-    "reviewText": "Number 5 The life advice this author wrote about was so inspiring. I feel like a new person after reading this book. I will read it again and again!"
+    "content": "Number 3 The life advice this author wrote about was so inspiring. I feel like a new person after reading this book. I will read it again and again!",
+    "book_id": 3,
+    "user_id": 3
+  },
+  {
+    "rating": 2,
+    "content": "Number 2 The life advice this author wrote about was so inspiring. I feel like a new person after reading this book. I will read it again and again!",
+    "book_id": 2,
+    "user_id": 2
+  },
+  {
+    "rating": 1,
+    "content": "Number 1 The life advice this author wrote about was so inspiring. I feel like a new person after reading this book. I will read it again and again!",
+    "book_id": 1,
+    "user_id": 1
   }
 ]

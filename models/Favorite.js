@@ -11,17 +11,26 @@ Favorite.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    favorite: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true,
-      defaultValue: false,
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "user",
+        key: "id",
+      },
+    },
+    book_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "book",
+        key: "id",
+      },
     },
   },
   {
     sequelize,
+    timestamps: true,
     freezeTableName: true,
-    timestamps: false,
-    underscored: false,
+    underscored: true,
     modelName: "favorite",
   }
 );

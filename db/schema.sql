@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS bookapp_db;
-CREATE DATABASE bookapp_db;
+DROP DATABASE IF EXISTS bookies_db;
+CREATE DATABASE bookies_db;

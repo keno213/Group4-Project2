@@ -7,34 +7,40 @@ const reviewData = require("./reviewData.json");
 const userData = require("./userData.json");
 
 const seedDatabase = async () => {
-  await sequelize.sync({ force: true });
-  // seed users must be first
-  const users = await User.bulkCreate(userData, {
-    individualHooks: true,
-    returning: true,
-  });
-  // seed books
-  for (const book of bookData) {
-    await Book.create({
-      ...book,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
+  try {
+    await sequelize.sync({ force: true });
+    console.log("Database synced!");
+    // Seed users with password hashing
+    const users = await User.bulkCreate(userData, {
+      individualHooks: true,
+      returning: true,
     });
-  }
-  // seed favorites
-  for (const favorite of favoriteData) {
-    await Favorite.create({
-      ...favorite,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
+    console.log("Users seeded!");
+
+    // Seed books
+    const books = await Book.bulkCreate(bookData, {
+      returning: true,
     });
-  }
-  // seed reviews
-  for (const review of reviewData) {
-    await Review.create({
-      ...review,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-      book_id: bookData[Math.floor(Math.random() * bookData.length)].id,
+    console.log("Books seeded!");
+
+    // Seed favorites
+    const favorites = await Favorite.bulkCreate(favoriteData, {
+      returning: true,
     });
+    console.log("Favorites seeded!");
+
+    // Seed reviews
+    const reviews = await Review.bulkCreate(reviewData, {
+      returning: true,
+    });
+    console.log("Reviews seeded!");
+
+    // clean exit
+    process.exit(0);
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
   }
-  process.exit(0);
 };
+
 seedDatabase();

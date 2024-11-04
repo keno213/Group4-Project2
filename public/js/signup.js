@@ -1,24 +1,31 @@
-const signupFormEl = document.querySelector("#signup-form");
-const signupUsernameEl = document.querySelector("#signup-username");
-const signupPasswordEl = document.querySelector("#signup-password");
+const signupForm = document.querySelector(".signup-form");
 
-signupFormEl.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const username = signupUsernameEl.value;
-  const password = signupPasswordEl.value;
+const signupFormHandler = async (event) => {
+  event.preventDefault();
 
-  try {
-    const response = await fetch("/signup", {
+  const usernameElement = document.querySelector("#username");
+  const emailElement = document.querySelector("#email");
+  const passwordElement = document.querySelector("#password");
+
+  const username = usernameElement ? usernameElement.value.trim() : "";
+  const email = emailElement ? emailElement.value.trim() : "";
+  const password = passwordElement ? passwordElement.value.trim() : "";
+
+  if (username && email && password) {
+    const response = await fetch("/api/users/signup", {
       method: "POST",
-      body: JSON.stringify({ username, password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      body: JSON.stringify({ username, email, password }),
+      headers: { "Content-Type": "application/json" },
     });
-    console.log("User created successfully!");
-    window.location.href = "/search";
-  } catch (error) {
-    console.error(error);
-    console.log("Failed to create user");
+
+    if (response.ok) {
+      document.location.replace("/profile");
+    } else {
+      alert("Failed to sign up");
+    }
   }
-});
+};
+
+if (signupForm) {
+  signupForm.addEventListener("submit", signupFormHandler);
+}

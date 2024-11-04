@@ -1,27 +1,22 @@
 [
   {
-    "userId": 1,
-    "bookId": 1,
-    "favorite": true
+    "user_id": 1,
+    "book_id": "FSVTDwAAQBAA"
   },
   {
-    "userId": 2,
-    "bookId": 2,
-    "favorite": false
+    "user_id": 2,
+    "book_id": "FSVTDwAAQBAB"
   },
   {
-    "userId": 3,
-    "bookId": 3,
-    "favorite": true
+    "user_id": 3,
+    "book_id": "FSVTDwAAQBAC"
   },
   {
-    "userId": 4,
-    "bookId": 4,
-    "favorite": false
+    "user_id": 4,
+    "book_id": "FSVTDwAAQBAD"
   },
   {
-    "userId": 5,
-    "bookId": 5,
-    "favorite": true
+    "user_id": 5,
+    "book_id": "FSVTDwAAQBAE"
   }
 ]
